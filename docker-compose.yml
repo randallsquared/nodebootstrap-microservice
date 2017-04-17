@@ -7,7 +7,7 @@ services:
       context: .
     volumes:
       - ./:/opt/code
-      - /opt/code/node_modules
+      #- /opt/code/node_modules
     expose:
       - 5501
     ports:
