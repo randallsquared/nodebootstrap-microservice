@@ -24,7 +24,12 @@ exports.setup = function(app, callback) {
         res.status(400).json(out); 
         return;
       } else {
-        out.errors = [];
+        if (process.env.NODE_ENV === "production") {
+          out.errors = ["Internal server error"];
+        } else {
+          out.errors = [err.toString()]
+        }
+        
         res.status(500).json(out);
         return; 
       }

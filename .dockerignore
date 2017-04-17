@@ -2,4 +2,4 @@
 npm-debug.log*
 
 # list of files that shouldn't be copied into the container
-node_modules
+# node_modules

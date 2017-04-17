@@ -3,11 +3,13 @@ version: "3"
 services:
   ms-nodebootstrap-example:
     container_name: ms-nodebootstrap-example
+    user: root # avoids ton of volume mounting headaches in dev mode.
     build:
       context: .
     volumes:
-      - ./:/opt/code
-      #- /opt/code/node_modules
+      - ./:/opt/app
+      # @see: http://jdlm.info/articles/2016/03/06/lessons-building-node-app-docker.html#the-node_modules-volume-trick
+      - /opt/app/node_modules
     expose:
       - 5501
     ports:

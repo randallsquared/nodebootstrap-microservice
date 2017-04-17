@@ -47,15 +47,16 @@
     "supertest": "^2.0.0"
   },
   "scripts": {
-    "start": "docker-compose up -d",
-    "build": "docker-compose build --no-cache",
-    "stop": "docker-compose down",
-    "clean": "npm run stop && npm run build && npm run start",    
+    "start":  "docker-compose up -d",
+    "build":  "docker-compose build --no-cache",
+    "stop":   "docker-compose down",
+    "clean":  "npm run stop && npm run build && npm run start",
     "restart": "docker-compose restart",
 
     "logs": "docker-compose logs -f ms-nodebootstrap-example",
     "logs-notail": "docker-compose logs ms-nodebootstrap-example",
 
+    "install": "docker-compose exec ms-nodebootstrap-example npm install",
     "install-package": "docker-compose exec ms-nodebootstrap-example npm install -S ",
     "install-dev-package": "docker-compose exec ms-nodebootstrap-example npm install -D ",
     
