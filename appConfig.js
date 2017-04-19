@@ -1,4 +1,5 @@
-require('app-module-path').addPath(__dirname + '/lib');
+var path = require('path');
+require('app-module-path').addPath(path.join(__dirname,'/lib'));
 
 exports.setup = function(app, callback) {
   // Nothing ever comes from "x-powered-by", but a security hole
@@ -43,5 +44,6 @@ exports.setup = function(app, callback) {
 
   if(typeof callback === 'function') {
     callback(app);
+    return;
   }
 };
