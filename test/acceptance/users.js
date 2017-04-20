@@ -12,7 +12,6 @@ describe('users endpoint', function() {
   });
 
   afterEach(function () {
-
   });
 
   it('responds to /users with a 200 OK', function(done) {
