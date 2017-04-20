@@ -48,9 +48,10 @@ describe('users endpoint', function() {
         var payload = response.body;
         assert.property(payload, 'users');
         assert.property(payload.users, 'data');
-        assert.isArray(payload.users.data);
-        assert.equal(payload.users.data.length, 2);
-        assert.equal(payload.users.data[0].email, 'first@example.com');
+        assert.property(payload.users.data, 'users');
+        assert.isArray(payload.users.data.users);
+        assert.equal(payload.users.data.users.length, 2);
+        assert.equal(payload.users.data.users[0].email, 'first@example.com');
       })
       .end(done);
             
