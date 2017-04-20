@@ -35,10 +35,10 @@ describe('users endpoint', function() {
   });
 
   after(function() {
-    //this.getUsers.restore();
     this.sinonbox.restore();
   });
 
+  // Note: depends on usersModel stub.
   it('GET /users returns proper data', function(done) {
     request(app)
       .get('/users')
