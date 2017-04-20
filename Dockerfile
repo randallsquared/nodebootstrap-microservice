@@ -7,6 +7,7 @@ WORKDIR /opt/app
 USER root
 
 RUN adduser -s /bin/false -D appuser \
+ && rm -rf node_modules \ 
  && npm install \ 
  && chown -R appuser /opt/app \
  && npm install -g nodemon
