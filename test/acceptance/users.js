@@ -1,9 +1,9 @@
-var request = require('supertest');
-var assert  = require('chai').assert;
+const request = require('supertest');
+const assert  = require('chai').assert;
 const sinon = require('sinon');
-var server  = require('../support/server');
-var fh     = require("../support/fixture-helper.js");
-var log     = require('metalogger')();
+const server  = require('../support/server');
+const fh     = require("../support/fixture-helper.js");
+const log     = require('metalogger')();
 
 describe('users endpoint', function() {
   var app;
@@ -19,7 +19,6 @@ describe('users endpoint', function() {
   });
 
   before(function() {
-
     const usersModel = require('users/models/users');
     this.getUsers = sinon.stub(usersModel.prototype, 'getUsers', function() {
       return new Promise(function(resolve, reject) {
@@ -30,7 +29,6 @@ describe('users endpoint', function() {
         });        
       });
     });
-
   });
 
   after(function() {
