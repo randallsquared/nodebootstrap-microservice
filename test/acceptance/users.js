@@ -19,8 +19,11 @@ describe('users endpoint', function() {
   });
 
   before(function() {
+
+    this.sinonbox = sinon.sandbox.create();
+
     const usersModel = require('users/models/users');
-    this.getUsers = sinon.stub(usersModel.prototype, 'getUsers', function() {
+    this.getUsers = this.sinonbox.stub(usersModel.prototype, 'getUsers', function() {
       return new Promise(function(resolve, reject) {
         fh.loadFixture("users-list.json").then(function(sampleUsersList) {
           resolve(JSON.parse(sampleUsersList));
@@ -32,7 +35,8 @@ describe('users endpoint', function() {
   });
 
   after(function() {
-    this.getUsers.restore();
+    //this.getUsers.restore();
+    this.sinonbox.restore();
   });
 
   it('GET /users returns proper data', function(done) {
