@@ -1,4 +1,5 @@
 var path = require('path');
+var log = require('metalogger')();
 require('app-module-path').addPath(path.join(__dirname,'/lib'));
 
 exports.setup = function(app, callback) {
@@ -14,11 +15,13 @@ exports.setup = function(app, callback) {
 
   // API endpoint attached to root route:
   app.use('/', require('homedoc')); // attach to root route
+  app.use('/users', require('users')); // attach to root route
 
    // Custom formatting for error responses. 
    // Among other things reformats Celebrate's (joi middleware) default output
   app.use((err, req, res, next) => { 
     if (err) {
+      log.error(err);
       var out = {};
       if (err.details) { // joi && other safe errors
         out.errors = err.details;
