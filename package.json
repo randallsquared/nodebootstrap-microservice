@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "app-module-path": "^2.1.0",
-    "axios": "^0.15.3",
+    "axios": "^0.16.1",
     "bluebird": "^3.5.0",
     "body-parser": "^1.14.1",
     "celebrate": "^4.0.1",
@@ -30,7 +30,7 @@
     "mysql": "^2.13.0",
     "nodebootstrap-server": "*",
     "promise-mysql": "^3.0.1",
-    "representor-serializer": "^1.0.0",
+    "representor-serializer": "^1.1.0",
     "uuid": "^3.0.1",
     "yaml": "*"
   },
@@ -45,7 +45,7 @@
     "nock": "^9.0.0",
     "should": "^11.0.0",
     "sinon": "^2.1.0",
-    "supertest": "^2.0.0"
+    "supertest": "^3.0.0"
   },
   "scripts": {
     "start": "docker-compose up -d",
