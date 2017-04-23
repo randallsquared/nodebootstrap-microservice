@@ -1,3 +1,4 @@
+// eslint-disable global-require
 var path = require('path');
 var log = require('metalogger')();
 require('app-module-path').addPath(path.join(__dirname,'/lib'));
