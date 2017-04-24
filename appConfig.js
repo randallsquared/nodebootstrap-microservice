@@ -22,24 +22,24 @@ exports.setup = function(app, callback) {
    // Among other things reformats Celebrate's (joi middleware) default output
   app.use((err, req, res, next) => { 
     if (err) {
-      log.error(err);
       var out = {};
-      if (err.details) { // joi && other safe errors
+      if (err.isJoi) { // Joi-based validation error. No need to log these
         out.errors = err.details;
         res.status(400).json(out); 
         return;
       } else {
+        log.error(err);
         if (process.env.NODE_ENV === "production") {
           out.errors = ["Internal server error"];
         } else {
-          out.errors = [err.toString()]
+          out.errors = [err.toString()];
         }
         
         res.status(500).json(out);
         return; 
       }
     }
-    next();
+    return next();
   });
 
   // If you need websockets:
