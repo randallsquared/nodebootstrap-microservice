@@ -55,15 +55,15 @@
     "restart": "docker-compose restart",
     "logs": "docker-compose logs -f ms-nodebootstrap-example",
     "logs-notail": "docker-compose logs ms-nodebootstrap-example",
-    "install": "docker-compose exec ms-nodebootstrap-example npm install",
+    "install-dependencies": "docker-compose exec ms-nodebootstrap-example npm install",
     "install-package": "docker-compose exec ms-nodebootstrap-example npm install -S ",
     "install-dev-package": "docker-compose exec ms-nodebootstrap-example npm install -D ",
-    "migration-create": "docker-compose exec ms-nodebootstrap-example node_modules/db-migrate/bin/db-migrate create --sql-file",
-    "migrate": "docker-compose exec ms-nodebootstrap-example node_modules/db-migrate/bin/db-migrate up",
-    "pretest": "docker-compose exec ms-nodebootstrap-example node_modules/jshint/bin/jshint lib test",
+    "migration-create": "docker-compose run --rm ms-nodebootstrap-example node_modules/db-migrate/bin/db-migrate create --sql-file",
+    "migrate": "docker-compose run --rm ms-nodebootstrap-example node_modules/db-migrate/bin/db-migrate up",
+    "pretest": "docker-compose run --rm ms-nodebootstrap-example node_modules/jshint/bin/jshint lib test",
     "test-native": "mocha --bail test/ test/acceptance/",
     "test-cov-native": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- --reporter dot test/ test/acceptance/",
-    "test": "npm run pretest && docker-compose exec ms-nodebootstrap-example npm run test-native",
-    "test-cov": "docker-compose exec ms-nodebootstrap-example npm run test-cov-native"
+    "test": "npm run pretest && docker-compose run --rm ms-nodebootstrap-example npm run test-native",
+    "test-cov": "docker-compose run --rm ms-nodebootstrap-example npm run test-cov-native"
   }
 }

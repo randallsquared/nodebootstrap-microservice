@@ -1,5 +1,5 @@
 # Alpine Linux-based, tiny Node container:
-FROM irakli/node-alpine:6.9.2
+FROM irakli/node-alpine:6.11.0
 
 ADD ./ /opt/app
 WORKDIR /opt/app
