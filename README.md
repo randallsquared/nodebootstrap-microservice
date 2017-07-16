@@ -28,16 +28,16 @@ corresponding files and enjoy the experience!
 
 ```
 # run:
-> npm start
+> make [start]
 
 # stop:
-> npm stop
+> make stop
 
 # clean rebuild:
-> npm run clean
+> make clean
 ```
 
-Inspecting health of the containers: 
+Inspecting health of the containers:
 
 ```
 > docker-compose ps
@@ -46,7 +46,7 @@ Inspecting health of the containers:
 ## Monitoring Logs:
 
 ```
-> npm run logs
+> make logs
 ```
 
 ## Installing a new packagey
@@ -71,7 +71,7 @@ npm run install-dev-package <packagename>
 # e.g.: 
 > npm run migration-create create-users-table
 # Run migrations:
-> npm run migrate
+> make migrate
 ```
 
 ## Accessing the microservice:
@@ -80,8 +80,8 @@ http://localhost:5501/
 
 ## Running Automated Tests
 
-1. Make sure the microservice is up (if not: run `npm run clean` and `npm start`)
-2. Run: `npm run test`
+1. Make sure the microservice is up (if not: run `make clean` or `make start`)
+2. Run: `make test`
 
 ## License
 
