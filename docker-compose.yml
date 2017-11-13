@@ -29,8 +29,8 @@ services:
     image: mysql:5.7
     # port mapping not needed for the app, but convenient in debugging
     # to use some GUI tool (e.g. SequelPro) against the DB, on the host
-    ports:
-      - 5306:3306
+    ## ports:
+    ##   - 5306:3306
     expose:
       - 3306
     env_file:
