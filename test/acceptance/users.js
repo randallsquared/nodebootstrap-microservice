@@ -8,7 +8,7 @@ const log     = require('metalogger')();
 const usersModel = require('users/models/users');
 
 describe('users endpoint', function() {
-  var app;
+  let app;
 
   beforeEach(function (done) {
     app = server.express();
@@ -46,7 +46,7 @@ describe('users endpoint', function() {
       .expect('Content-Type', /application\/hal\+json.*/)
       .expect(200)
       .expect(function(response) {
-        var payload = response.body;
+        const payload = response.body;
         assert.property(payload, '_links');
         assert.property(payload, 'users');
         assert.equal(payload._links.self.href, '/users');
