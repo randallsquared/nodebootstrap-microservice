@@ -10,8 +10,6 @@ services:
       - ./:/opt/app
       # @see: http://jdlm.info/articles/2016/03/06/lessons-building-node-app-docker.html#the-node_modules-volume-trick
       - /opt/app/node_modules
-    expose:
-      - 5501
     ports:
       - 5501:5501
     env_file:
@@ -33,6 +31,8 @@ services:
     # to use some GUI tool (e.g. SequelPro) against the DB, on the host
     ports:
       - 5306:3306
+    expose:
+      - 3306
     env_file:
       - ./database.env
     volumes:
