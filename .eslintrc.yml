@@ -11,6 +11,11 @@ rules:
   quotes: off
   indent: off
   no-unused-vars: off
+  prefer-const: warn
+  no-var: warn
+  complexity:
+    - warn
+    - max: 5
   linebreak-style:
     - error
     - unix

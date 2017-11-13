@@ -31,7 +31,7 @@ exports.setup = function(app, callback) {
    // Among other things reformats Celebrate's (joi middleware) default output
   app.use((err, req, res, next) => {
     if (err) {
-      var out = {};
+      const out = {};
       if (err.isJoi) { // Joi-based validation error. No need to log these
         out.errors = err.details;
         res.status(400).json(out);
@@ -52,7 +52,7 @@ exports.setup = function(app, callback) {
   });
 
   // If you need websockets:
-  // var socketio = require('socket.io')(runningApp.http);
+  // let socketio = require('socket.io')(runningApp.http);
   // require('fauxchatapp')(socketio);
 
   if(typeof callback === 'function') {
