@@ -1,9 +1,11 @@
 const request = require('supertest');
 const assert  = require('chai').assert;
-const sinon = require('sinon');
+const sinon   = require('sinon');
 const server  = require('../support/server');
-const fh     = require("../support/fixture-helper.js");
+const fh      = require("../support/fixture-helper.js");
 const log     = require('metalogger')();
+
+const usersModel = require('users/models/users');
 
 describe('users endpoint', function() {
   var app;
@@ -22,14 +24,13 @@ describe('users endpoint', function() {
 
     this.sinonbox = sinon.sandbox.create();
 
-    const usersModel = require('users/models/users');
     this.getUsers = this.sinonbox.stub(usersModel.prototype, 'getUsers').callsFake(function() {
       return new Promise(function(resolve, reject) {
         fh.loadFixture("users-list.json").then(function(sampleUsersList) {
           resolve(JSON.parse(sampleUsersList));
         }).catch(function(err) {
           log.error(err);
-        });        
+        });
       });
     });
   });
