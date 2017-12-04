@@ -8,9 +8,6 @@ const hbs    = require('hbs');
 require('app-module-path').addPath(path.join(__dirname,'/lib'));
 
 exports.setup = function(app, callback) {
-  // Nothing ever comes from "x-powered-by", but a security hole
-  app.disable("x-powered-by");
-
   // Choose your favorite view engine(s)
   app.set('view engine', 'handlebars');
   app.engine('handlebars', hbs.__express);
@@ -34,8 +31,7 @@ exports.setup = function(app, callback) {
       const out = {};
       if (err.isJoi) { // Joi-based validation error. No need to log these
         out.errors = err.details;
-        res.status(400).json(out);
-        return;
+        res.status(400).json(out); return;
       } else {
         log.error(err);
         if (process.env.NODE_ENV === "production") {
@@ -43,9 +39,7 @@ exports.setup = function(app, callback) {
         } else {
           out.errors = [err.toString()];
         }
-
-        res.status(500).json(out);
-        return;
+        res.status(500).json(out); return;
       }
     }
     return next();
