@@ -24,8 +24,21 @@ exports.setup = function(app, callback) {
    * see: https://www.npmjs.com/package/helmet **/
   app.use(helmet());
 
-   // Custom formatting for error responses.
-   // Among other things reformats Celebrate's (joi middleware) default output
+  setupErrorHandling(app);
+
+  // If you need websockets:
+  // let socketio = require('socket.io')(runningApp.http);
+  // require('fauxchatapp')(socketio);
+
+  if(typeof callback === 'function') {
+    callback(app);
+    return;
+  }
+};
+
+function setupErrorHandling(app) {
+  // Custom formatting for error responses.
+  // Among other things reformats Celebrate's (joi middleware) default output
   app.use((err, req, res, next) => {
     if (err) {
       const out = {};
@@ -44,13 +57,4 @@ exports.setup = function(app, callback) {
     }
     return next();
   });
-
-  // If you need websockets:
-  // let socketio = require('socket.io')(runningApp.http);
-  // require('fauxchatapp')(socketio);
-
-  if(typeof callback === 'function') {
-    callback(app);
-    return;
-  }
-};
+}
