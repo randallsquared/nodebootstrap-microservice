@@ -44,6 +44,7 @@
     "istanbul": "^0.4.2",
     "mocha": "^4.0.0",
     "nock": "^9.0.0",
+    "nyc": "^11.3.0",
     "should": "^13.0.0",
     "sinon": "^4.1.0",
     "supertest": "^3.0.0"
@@ -62,9 +63,28 @@
     "migration-create": "docker-compose run --rm ms-nodebootstrap-example node_modules/db-migrate/bin/db-migrate create --sql-file",
     "migrate": "docker-compose run --rm ms-nodebootstrap-example node_modules/db-migrate/bin/db-migrate up",
     "pretest": "docker-compose run --rm ms-nodebootstrap-example node_modules/eslint/bin/eslint.js lib test server.js appConfig.js",
-    "test-native": "mocha --bail test/ test/acceptance/",
+    "lint": "eslint src test",
+    "test-native": "npm run lint && nyc mocha --bail test/ test/acceptance/",
     "test-cov-native": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- --reporter dot test/ test/acceptance/",
     "test": "docker-compose run --rm ms-nodebootstrap-example npm run test-native",
     "test-cov": "docker-compose run --rm ms-nodebootstrap-example npm run test-cov-native"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "per-file": true,
+    "lines": [80, 90],
+    "statements": [55, 90],
+    "functions": [55, 90],
+    "branches": [55, 90],
+    "include": [
+      "lib/**/*.js",
+      "*.js"
+    ],
+    "reporter": [
+      "text-summary",
+      "lcov"
+    ],
+    "all": true,
+    "report-dir": "./coverage"
   }
 }
