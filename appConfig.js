@@ -7,34 +7,15 @@ const hbs    = require('hbs');
 
 require('app-module-path').addPath(path.join(__dirname,'/lib'));
 
-exports.setup = function(app, callback) {
-  // Choose your favorite view engine(s)
-  app.set('view engine', 'handlebars');
-  app.engine('handlebars', hbs.__express);
-
-  //---- Mounting well-encapsulated application modules (so-called: "mini-apps")
-  //---- See: http://expressjs.com/guide/routing.html and http://vimeo.com/56166857
-
+// Add all routes and route-handlers for your service/app here:
+function serviceRoutes(app) {
   /* eslint-disable global-require */
+
   app.use('/',      require('homedoc')); // attach to root route
   app.use('/users', require('users')); // attach to sub-route
+
   /* eslint-enable global-require */
-
-  /** Adding security best-practices middleware
-   * see: https://www.npmjs.com/package/helmet **/
-  app.use(helmet());
-
-  setupErrorHandling(app);
-
-  // If you need websockets:
-  // let socketio = require('socket.io')(runningApp.http);
-  // require('fauxchatapp')(socketio);
-
-  if(typeof callback === 'function') {
-    callback(app);
-    return;
-  }
-};
+}
 
 function setupErrorHandling(app) {
   // Custom formatting for error responses.
@@ -58,3 +39,28 @@ function setupErrorHandling(app) {
     return next();
   });
 }
+
+exports.setup = function(app, callback) {
+  // Choose your favorite view engine(s)
+  app.set('view engine', 'handlebars');
+  app.engine('handlebars', hbs.__express);
+
+  //---- Mounting well-encapsulated application modules (so-called: "mini-apps")
+  //---- See: http://expressjs.com/guide/routing.html and http://vimeo.com/56166857
+  serviceRoutes(app);
+
+  /** Adding security best-practices middleware
+   * see: https://www.npmjs.com/package/helmet **/
+  app.use(helmet());
+
+  setupErrorHandling(app);
+
+  // If you need websockets:
+  // let socketio = require('socket.io')(runningApp.http);
+  // require('fauxchatapp')(socketio);
+
+  if(typeof callback === 'function') {
+    callback(app);
+    return;
+  }
+};
