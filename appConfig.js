@@ -5,6 +5,8 @@ const log    = require('metalogger')();
 
 const hbs    = require('hbs');
 
+const {spieler, expressValidator} = require('spieler')();
+
 require('app-module-path').addPath(path.join(__dirname,'/lib'));
 
 // Add all routes and route-handlers for your service/app here:
@@ -23,7 +25,7 @@ function setupErrorHandling(app) {
   app.use((err, req, res, next) => {
     if (err) {
       const out = {};
-      if (err.isJoi) { // Joi-based validation error. No need to log these
+      if (err.isJoi || err.type === "validation") { //validation error. No need to log these
         out.errors = err.details;
         res.status(400).json(out); return;
       } else {
@@ -45,13 +47,15 @@ exports.setup = function(app, callback) {
   app.set('view engine', 'handlebars');
   app.engine('handlebars', hbs.__express);
 
+  /** Adding security best-practices middleware
+   * see: https://www.npmjs.com/package/helmet **/
+   app.use(helmet());
+
+   app.use(expressValidator());
+
   //---- Mounting well-encapsulated application modules (so-called: "mini-apps")
   //---- See: http://expressjs.com/guide/routing.html and http://vimeo.com/56166857
   serviceRoutes(app);
-
-  /** Adding security best-practices middleware
-   * see: https://www.npmjs.com/package/helmet **/
-  app.use(helmet());
 
   setupErrorHandling(app);
 

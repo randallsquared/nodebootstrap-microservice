@@ -14,9 +14,9 @@ services:
       - 5501:5501
     env_file:
       - ./database.env
-    links: 
+    links:
       - ms-nodebootstrap-example-db
-    environment: 
+    environment:
       - NODE_ENV=development
       - NODE_HOT_RELOAD=1
       - NODE_LOGGER_GRANULARLEVELS=1
@@ -31,6 +31,8 @@ services:
     # to use some GUI tool (e.g. SequelPro) against the DB, on the host
     ## ports:
     ##   - 5306:3306
+    ports:
+      - 3306
     expose:
       - 3306
     env_file:
