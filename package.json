@@ -46,11 +46,11 @@
     "istanbul": "^0.4.2",
     "mocha": "^4.0.0",
     "nock": "^9.0.0",
-    "nodemon": "^1.14.2",
     "nyc": "^11.3.0",
     "should": "^13.0.0",
     "sinon": "^4.1.0",
-    "supertest": "^3.0.0"
+    "supertest": "^3.0.0",
+    "nodemon": "^1.14.3"
   },
   "scripts": {
     "start": "docker-compose up -d",
@@ -69,6 +69,7 @@
     "lint": "eslint src test",
     "test-native": "npm run lint && nyc mocha --bail test/ test/acceptance/",
     "test-cov-native": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- --reporter dot test/ test/acceptance/",
+    "start-native": "nodemon -L -e js,coffee,jade,handlebars server.js",
     "test": "docker-compose run --rm ms-nodebootstrap-example npm run test-native",
     "test-cov": "docker-compose run --rm ms-nodebootstrap-example npm run test-cov-native"
   },
