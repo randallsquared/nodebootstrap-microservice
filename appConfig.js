@@ -5,8 +5,6 @@ const log    = require('metalogger')();
 
 const hbs    = require('hbs');
 
-const {spieler, expressValidator} = require('spieler')();
-
 require('app-module-path').addPath(path.join(__dirname,'/lib'));
 
 // Add all routes and route-handlers for your service/app here:
@@ -50,8 +48,6 @@ exports.setup = function(app, callback) {
   /** Adding security best-practices middleware
    * see: https://www.npmjs.com/package/helmet **/
    app.use(helmet());
-
-   app.use(expressValidator());
 
   //---- Mounting well-encapsulated application modules (so-called: "mini-apps")
   //---- See: http://expressjs.com/guide/routing.html and http://vimeo.com/56166857
