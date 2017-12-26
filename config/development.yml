@@ -1,2 +1,2 @@
 app:
-  something: else
+  port: 56789
