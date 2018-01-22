@@ -40,7 +40,7 @@ exports.up = function(db) {
 
 exports.down = function(db) {
   var filePath = path.join(__dirname, 'sqls', '20170420012051-create-users-table-down.sql');
-  if (db.internals.argv.env !== "dev") {
+  if (!["dev"].includes(db.internals.argv.env)) {
     console.log("Environment is not 'dev'. Skipping " + filePath);
     return new Promise( function( resolve, reject ) { resolve(""); });
   }
