@@ -2,6 +2,7 @@ default: start
 
 project:=nb-demo
 service:=ms-nodebootstrap-example
+NODE_ENV?=dev
 
 .PHONY: start
 start: 
@@ -47,7 +48,7 @@ migration-create:
 
 .PHONY: migrate
 migrate:
-	docker-compose -p ${project} exec ${service} node_modules/db-migrate/bin/db-migrate up
+	docker-compose -p ${project} exec ${service} node_modules/db-migrate/bin/db-migrate up -e ${NODE_ENV}
 
 .PHONY: test
 test:
