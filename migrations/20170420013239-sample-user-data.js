@@ -20,8 +20,9 @@ exports.setup = function(options, seedLink) {
 
 exports.up = function(db) {
   var filePath = path.join(__dirname, 'sqls', '20170420013239-sample-user-data-up.sql');
-  if (db.internals.argv.env !== "dev") {
-    console.log("Environment is not 'dev'. Skipping " + filePath);
+  const allowed = ["dev", "qa"];
+  if (!allowed.includes(db.internals.argv.env)) {
+    console.log(`Environment is not ${allowed}. Skipping ${filePath}`);
     return new Promise( function( resolve, reject ) { resolve(""); });
   }
   
@@ -40,8 +41,9 @@ exports.up = function(db) {
 
 exports.down = function(db) {
   var filePath = path.join(__dirname, 'sqls', '20170420013239-sample-user-data-down.sql');
-  if (db.internals.argv.env !== "dev") {
-    console.log("Environment is not 'dev'. Skipping " + filePath);
+  const allowed = ["dev", "qa"];
+  if (!allowed.includes(db.internals.argv.env)) {
+    console.log(`Environment is not ${allowed}. Skipping ${filePath}`);
     return new Promise( function( resolve, reject ) { resolve(""); });
   }
   
