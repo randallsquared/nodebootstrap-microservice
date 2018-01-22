@@ -19,7 +19,6 @@ function serviceRoutes(app) {
 
 function setupErrorHandling(app) {
   // Custom formatting for error responses.
-  // Among other things reformats Celebrate's (joi middleware) default output
   app.use((err, req, res, next) => {
     if (err) {
       const out = {};
