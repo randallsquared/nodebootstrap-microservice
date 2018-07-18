@@ -3,6 +3,7 @@ default: start
 project:=nb-demo
 service:=ms-nodebootstrap-example
 NODE_ENV?=dev
+COMMIT_HASH = $(shell git rev-parse --verify HEAD)
 
 .PHONY: start
 start: 
@@ -57,3 +58,16 @@ test:
 .PHONY: test-cov
 test-cov:
 	docker-compose -p ${project} exec ${service} npm run test-cov
+
+.PHONY: commit-hash
+commit-hash:
+	@echo $(COMMIT_HASH)
+
+.PHONY: build-release
+build-release:
+	docker build --target release -t local/${service}:${COMMIT_HASH} .
+
+.PHONY: run-release
+run-release:
+	docker run -d --name ${service}_${COMMIT_HASH} -p :5501 local/${service}:${COMMIT_HASH}
+	docker logs -f ${service}_${COMMIT_HASH}

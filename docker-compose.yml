@@ -1,4 +1,4 @@
-version: "3"
+version: "3.4"
 
 services:
   ms-nodebootstrap-example:
@@ -6,6 +6,7 @@ services:
     user: root # avoids ton of volume mounting headaches in dev mode.
     build:
       context: .
+      target: build
     volumes:
       - ./:/opt/app
       # @see: http://jdlm.info/articles/2016/03/06/lessons-building-node-app-docker.html#the-node_modules-volume-trick
