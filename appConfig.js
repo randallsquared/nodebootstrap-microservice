@@ -2,13 +2,17 @@
 const path   = require('path');
 const helmet = require('helmet');
 const log    = require('metalogger')();
-
+const healthcheck = require('maikai');
 const hbs    = require('hbs');
 
 require('app-module-path').addPath(path.join(__dirname,'/lib'));
 
 // Add all routes and route-handlers for your service/app here:
 function serviceRoutes(app) {
+
+  // Add healthcheck middleware
+  app.use(healthcheck().express());
+
   /* eslint-disable global-require */
 
   app.use('/',      require('homedoc')); // attach to root route

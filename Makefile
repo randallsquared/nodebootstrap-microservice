@@ -60,7 +60,10 @@ migrate:
 	docker-compose -p ${project} exec ${service} node_modules/db-migrate/bin/db-migrate up -e ${NODE_ENV}
 
 .PHONY: test
-test:
+test: start test-exec
+
+.PHONY: test-exec
+test-exec:
 	docker-compose -p ${project} exec ${service} npm run test
 
 .PHONY: lint-fix

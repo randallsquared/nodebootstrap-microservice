@@ -22,7 +22,7 @@ describe('users endpoint', () => {
 
   before(() => {
 
-    this.sinonbox = sinon.sandbox.create();
+    this.sinonbox = sinon.createSandbox();
 
     this.getUsers = this.sinonbox.stub(usersModel.prototype, 'getUsers').callsFake(function() {
       return new Promise(function(resolve, reject) {
