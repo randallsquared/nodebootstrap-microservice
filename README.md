@@ -50,6 +50,15 @@ Inspecting health of the containers:
 > make logs
 ```
 
+## Debugging
+
+To shell into the container, simply run:
+
+```
+> make shell
+```
+
+
 ## Running tests:
 
 ```
@@ -88,8 +97,7 @@ http://localhost:5501/
 
 ## Running Automated Tests
 
-1. Make sure the microservice is up (if not: run `make clean` or `make start`)
-2. Run: `make test`
+Run: `make test`
 
 ## License
 

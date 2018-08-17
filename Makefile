@@ -59,6 +59,10 @@ migration-create:
 migrate:
 	docker-compose -p ${project} exec ${service} node_modules/db-migrate/bin/db-migrate up -e ${NODE_ENV}
 
+.PHONY: shell
+shell:
+	docker-compose -p ${project} exec ${service} sh
+
 .PHONY: test
 test: start test-exec
 
