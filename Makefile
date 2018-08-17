@@ -47,6 +47,10 @@ install-package:
 install-dev-package:
 	docker-compose -p ${project} exec ${service} npm install -D ${package}
 
+.PHONY: dependencies
+dependencies:
+	docker-compose -p ${project} exec ${service} npm install	
+
 .PHONY: migration-create
 migration-create:
 	docker-compose -p ${project} exec ${service} node_modules/db-migrate/bin/db-migrate create --sql-file
@@ -58,6 +62,10 @@ migrate:
 .PHONY: test
 test:
 	docker-compose -p ${project} exec ${service} npm run test
+
+.PHONY: lint-fix
+lint-fix:
+	docker-compose -p ${project} exec ${service} npm run lint:fix
 
 .PHONY: test-cov
 test-cov:
