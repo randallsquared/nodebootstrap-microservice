@@ -9,13 +9,17 @@ describe('users model', () => {
   it('Load users from a database', async () =>  {
       const users = new Users();
       const usersList = await users.getUsers();
-      const usersList2= await fp.promise(100, [{
-        email: "some@some.com"
-      }]);
-      require('metalogger')().info("users:" , usersList);
-      assert.ok(usersList2.length > 0);
-      const aUser = usersList2[0];
+      assert.ok(usersList.length > 0, 
+        'Database query returns more than zero elements');
+      const aUser = usersList[0];
       expect(aUser).to.have.property('email');  
+  });
+
+
+  after( async () => {
+    const db = require("datastore");
+    const conn = await db.conn();
+    conn.end();
   });
 
 });

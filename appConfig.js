@@ -10,8 +10,14 @@ require('app-module-path').addPath(path.join(__dirname,'/lib'));
 // Add all routes and route-handlers for your service/app here:
 function serviceRoutes(app) {
 
-  // Add healthcheck middleware
-  app.use(healthcheck().express());
+  // Add advanced healthcheck middleware (incl. database check)
+  const check = healthcheck();
+  const AdvancedHealthcheckers = require('healthchecks-advanced');
+  const advCheckers = new AdvancedHealthcheckers();
+  // Database health check is cached for 10000ms = 10 seconds!
+  check.addCheck('db', 'usersQuery', advCheckers.dbUsersCheck, 
+    {minCacheMs: 10000});
+  app.use(check.express());
 
   /* eslint-disable global-require */
 
