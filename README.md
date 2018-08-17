@@ -59,16 +59,16 @@ Coverage reports are stored under `coverage` sub-folder.
 
 ## Installing a new package
 
-Installing a package:
+Installing a package (let's assume for package `maikai`):
 
 ```
-npm run install-package <packagename>
+make package=maikai install-package
 ```
 
-Install a package in dev-dependencies:
+Install a package in dev-dependencies (let's assume for package `mocha`):
 
 ```
-npm run install-dev-package <packagename>
+make package=mocha install-dev-package
 ```
 
 ## Database Migrations (Currently: MySQL)
