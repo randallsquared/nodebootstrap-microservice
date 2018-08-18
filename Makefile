@@ -35,21 +35,19 @@ build:
 .PHONY: clean
 clean: stop build start
 
-.PHONY: install-dependencies
-install-dependencies:
-	docker-compose -p ${project} exec ${service} npm install
+.PHONY: add
+add: install-package-in-container build
 
-.PHONY: install-package
-install-package:
+.PHONY: install-package-in-container
+install-package-in-container:
 	docker-compose -p ${project} exec ${service} npm install -S ${package}
 
-.PHONY: install-dev-package
-install-dev-package:
-	docker-compose -p ${project} exec ${service} npm install -D ${package}
+.PHONY: add-dev
+add-dev: install-dev-package-in-container build
 
-.PHONY: dependencies
-dependencies:
-	docker-compose -p ${project} exec ${service} npm install	
+.PHONY: install-dev-package-in-container
+install-dev-package-in-container:
+	docker-compose -p ${project} exec ${service} npm install -D ${package}
 
 .PHONY: migration-create
 migration-create:

@@ -71,14 +71,18 @@ Coverage reports are stored under `coverage` sub-folder.
 Installing a package (let's assume for package `maikai`):
 
 ```
-make package=maikai install-package
+make add package=maikai
 ```
 
 Install a package in dev-dependencies (let's assume for package `mocha`):
 
 ```
-make package=mocha install-dev-package
+make add-dev package=mocha
 ```
+
+If you add a number of packages in package.json manually (e.g. on the host), 
+you generally want to run `make build` to rebuild the container or run
+`make clean` to stop, rebuild and start.
 
 ## Database Migrations (Currently: MySQL)
 
