@@ -50,6 +50,15 @@ Inspecting health of the containers:
 > make logs
 ```
 
+## Debugging
+
+To shell into the container, simply run:
+
+```
+> make shell
+```
+
+
 ## Running tests:
 
 ```
@@ -59,17 +68,21 @@ Coverage reports are stored under `coverage` sub-folder.
 
 ## Installing a new package
 
-Installing a package:
+Installing a package (let's assume for package `maikai`):
 
 ```
-npm run install-package <packagename>
+make add package=maikai
 ```
 
-Install a package in dev-dependencies:
+Install a package in dev-dependencies (let's assume for package `mocha`):
 
 ```
-npm run install-dev-package <packagename>
+make add-dev package=mocha
 ```
+
+If you add a number of packages in package.json manually (e.g. on the host), 
+you generally want to run `make build` to rebuild the container or run
+`make clean` to stop, rebuild and start.
 
 ## Database Migrations (Currently: MySQL)
 
@@ -88,8 +101,7 @@ http://localhost:5501/
 
 ## Running Automated Tests
 
-1. Make sure the microservice is up (if not: run `make clean` or `make start`)
-2. Run: `make test`
+Run: `make test`
 
 ## License
 

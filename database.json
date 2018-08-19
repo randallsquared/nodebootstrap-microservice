@@ -6,6 +6,13 @@
     "database": {"ENV": "MYSQL_DATABASE"},
     "host": {"ENV": "MYSQL_HOST"}
   },
+  "test": {
+    "driver": "mysql",
+    "user": {"ENV": "MYSQL_USER"},
+    "password": {"ENV": "MYSQL_PASSWORD"},
+    "database": {"ENV": "MYSQL_DATABASE"},
+    "host": {"ENV": "MYSQL_HOST"}
+  },  
   "qa-server" : {
     "driver": "mysql",
     "user": "root",
